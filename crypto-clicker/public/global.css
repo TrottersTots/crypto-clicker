@@ -14,9 +14,10 @@ html {
 }
 html,
 body {
+  cursor: url("/assets/cursor_.png"), pointer;
 }
 body {
   font-family: Consolas, Roboto, sans-serif;
-  background-image: url("/images/background.gif");
+  background-image: url("/assets/background.gif");
   background-size: cover;
 }

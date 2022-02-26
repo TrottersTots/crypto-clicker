@@ -20,6 +20,7 @@
     margin: var(--global_margin);
     color: antiquewhite;
   }
+
   .title > h1 {
     font-family: "Blade Runner Movie Font";
     margin-bottom: -20px;
