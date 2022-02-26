@@ -17,14 +17,16 @@
 </script>
 
 <div class="title">
-  <h1>Crypto Clicker</h1>
+  <h1 class='glitchy'>Crypto Clicker</h1>
+  <h1 class='glitchy'>Crypto Clicker</h1>
+  <h1 class='glitchy'>Crypto Clicker</h1>
 </div>
 
 <div class="content">
   <Container title="info" grow={1} />
   <Container title="main" grow={2}>
     <Cookie bind:this={cookie}/>
-	  <h2>{$score.toFixed(5)} : BTC</h2>
+      <h2>{$score.toFixed(5)} : BTC</h2>
 	
     <button on:click={addClicker}>
       Add Clicker
@@ -46,13 +48,10 @@
 <!-- end content -->
 <style>
   .title {
-    margin: var(--global_margin);
-    color: antiquewhite;
-  }
+    margin-top: 50px;
+    margin-bottom: 15px;
+    margin-left: var(--global-margin);
 
-  .title > h1 {
-    font-family: "Blade Runner Movie Font";
-    margin-bottom: -10px;
   }
   .content {
     display: flex;
