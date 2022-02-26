@@ -1,9 +1,11 @@
 <script>
 	import Cookie from "./Components/Cookie.svelte";
 	import Clicker from "./Components/Clicker.svelte";
+	import Upgrade from "./Components/Upgrade.svelte";
 
 	import { score } from "./Components/stores.js";
 
+	let cookie;
 	let clickers = Array(0);
 
 	const addClicker = () => {
@@ -15,7 +17,8 @@
 <main>
 	<h1>Crypto Clicker</h1>
 	<h2>{$score.toFixed(5)} : BTC</h2>
-	<Cookie/>
+	<Cookie bind:this={cookie}/>
+	<Upgrade target={cookie}/>
 	<button on:click={addClicker}>
 		Add Clicker
 	</button>

@@ -12,7 +12,6 @@
 
     const action = () => {
         $score += increment;
-        console.log($score);
         setTimeout(action, 1000/speed);
     }
 
