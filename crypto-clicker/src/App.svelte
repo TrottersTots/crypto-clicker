@@ -19,6 +19,9 @@
   .title {
     margin: var(--global_margin);
   }
+  .title > h1 {
+    font-family: "Blade Runner Movie Font";
+  }
   .content {
     display: flex;
     flex-direction: row;
