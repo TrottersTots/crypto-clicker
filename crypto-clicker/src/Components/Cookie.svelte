@@ -21,14 +21,8 @@
     export const getUpgradeCost = () => {
         return $cookie_upgrade_cost;
     }
-    $score -= $cookie_upgrade_cost;
-    increment *= $cookie_multiplier;
-    update_cookie_upgrade_cost();
-  };
 
-  export const getUpgradeCost = () => {
-    return $cookie_upgrade_cost;
-  };
+
 </script>
 
 <!--html-->
@@ -39,7 +33,6 @@
 >
   <img class="ominous-hover" alt="btc" src={img_path} draggable="false" />
 </button>
-<h2>Current Clicker Increment: {increment}</h2>
 <!-- <button on:click={buyUpgrade}>Clicker Upgrade {$cookie_upgrade_cost}</button> -->
 
 <!--end-html-->
