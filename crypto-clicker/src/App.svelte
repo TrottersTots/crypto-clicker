@@ -7,7 +7,7 @@
 
   import Upgrade from "./Components/Upgrade.svelte";
 
-  import { score, costs, increments } from "./Components/stores.js";
+  import { score, costs, increments, info_map } from "./Components/stores.js";
 
   import InfoJuicer from "./Components/InfoJuicer.svelte";
 
@@ -46,16 +46,6 @@
   let dust = 0;
   let stars = 0;
 
-  let info_map = [
-    {
-      Stage: "Planet",
-      "C02 Emissions": "500T lbs/s",
-      Atmosphere: "Normal",
-      "Flora/Fauna": "Normal",
-      Civilization: "Functional",
-    },
-  ];
-
   const setDust = () => {
     dust = Math.floor(Math.random() * 3);
     setTimeout(setDust, 20000);
@@ -65,6 +55,67 @@
     setTimeout(setStars, 11000);
   };
 
+  const updateEcoInfo = () => {
+    switch (true) {
+      case planet == 0:
+        $info_map[0].Stage = "Planet";
+        $info_map[0].Atmosphere = "Normal";
+        $info_map[0]["Flora/Fauna"] = "Normal";
+        $info_map[0].Civilization = "Functioning";
+        break;
+      case planet == 1:
+        $info_map[0].Stage = "Planet";
+        $info_map[0].Atmosphere = "Toxic";
+        $info_map[0]["Flora/Fauna"] = "Reduced";
+        $info_map[0].Civilization = "Chaos";
+        break;
+      case planet == 2:
+        $info_map[0].Stage = "Planet";
+        $info_map[0].Atmosphere = "Lethal";
+        $info_map[0]["Flora/Fauna"] = "Endangered";
+        $info_map[0].Civilization = "Apocalypse";
+        break;
+      case planet == 3:
+        $info_map[0].Stage = "Planet";
+        $info_map[0].Atmosphere = "Disintegrated";
+        $info_map[0]["Flora/Fauna"] = "Extinct";
+        $info_map[0].Civilization = "Extinct";
+        break;
+      case planet == 4:
+        $info_map[0].Stage = "Planet";
+        $info_map[0].Atmosphere = "Non-existant";
+        $info_map[0]["Flora/Fauna"] = "Extinct";
+        $info_map[0].Civilization = "Extinct";
+        break;
+      case planet == 5:
+        $info_map[0].Stage = "Planet";
+
+        $info_map[0].Atmosphere = "Non-existant";
+        $info_map[0]["Flora/Fauna"] = "Extinct";
+        $info_map[0].Civilization = "Extinct";
+        break;
+      case planet == 6:
+        $info_map[0].Stage = "Star";
+        $info_map[0].Atmosphere = "Not Applicable";
+        $info_map[0]["Flora/Fauna"] = "Not Applicable";
+        $info_map[0].Civilization = "Not Applicable";
+        break;
+      case planet == 7:
+        $info_map[0].Stage = "Galaxy";
+        $info_map[0].Atmosphere = "Not Applicable";
+        $info_map[0]["Flora/Fauna"] = "Not Applicable";
+        $info_map[0].Civilization = "Not Applicable";
+        break;
+      case planet == 8:
+        $info_map[0].Stage = "Black Hole";
+        $info_map[0]["C02 Emissions"] = `Not Applicable`;
+        $info_map[0].Atmosphere = "Not Applicable";
+        $info_map[0]["Flora/Fauna"] = "Not Applicable";
+        $info_map[0].Civilization = "Not Applicable";
+        break;
+    }
+  };
+
   const updateSpaceScene = (score) => {
     //update planet based on score
     const updatePlanet = (planetID) => {
@@ -72,34 +123,53 @@
         return;
       }
       planet = planetID;
+      updateEcoInfo();
     };
+    let emission_factor = 31.4;
+
     switch (true) {
       case score >= 10000:
         updatePlanet(8);
+        $info_map[0]["C02 Emissions"] = `Not Applicable`;
         break;
       case score >= 5000:
         updatePlanet(7);
+        $info_map[0]["C02 Emissions"] = `Not Applicable`;
         break;
       case score >= 2500:
         updatePlanet(6);
+        $info_map[0]["C02 Emissions"] = `Not Applicable`;
         break;
       case score >= 1250:
         updatePlanet(5);
+        $info_map[0]["C02 Emissions"] = `Not Applicable`;
+
         break;
       case score >= 625:
         updatePlanet(4);
+        $info_map[0]["C02 Emissions"] = `Not Applicable`;
+
         break;
       case score >= 312:
         updatePlanet(3);
+        $info_map[0]["C02 Emissions"] = `${planet * emission_factor}T lbs/sec`;
+
         break;
       case score >= 156:
         updatePlanet(2);
+        $info_map[0]["C02 Emissions"] = `${planet * emission_factor}B lbs/sec`;
+
         break;
       case score >= 75:
         updatePlanet(1);
+        $info_map[0]["C02 Emissions"] = `${planet * emission_factor}M lbs/sec`;
+
         break;
       default:
         updatePlanet(0);
+        $info_map[0]["C02 Emissions"] = `${
+          ((planet + 1) * emission_factor) / 2
+        }K lbs/sec`;
     }
   };
 
@@ -127,14 +197,14 @@
 </script>
 
 <div class="title">
-  <h1 class="glitchy">Crypto Clicker</h1>
+  <h1 class="glitchy" style="color: white">Crypto Clicker</h1>
   <h1 class="glitchy">Crypto Clicker</h1>
   <h1 class="glitchy">Crypto Clicker</h1>
 </div>
 
 <div class="content">
   <Container title="[eco footprint]" grow={1}>
-    <InfoJuicer {info_map} padding={true} />
+    <InfoJuicer padding={true} />
     <InfoJuicer>
       <div class="space">
         <div
@@ -233,12 +303,13 @@
   .title {
     margin-top: 50px;
     margin-bottom: 15px;
-    margin-left: var(--global-margin);
+    margin-left: 6px;
   }
   .content {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+    border-top: 1px solid aliceblue;
   }
 
   .per-click {
@@ -272,6 +343,8 @@
     color: antiquewhite;
     margin-top: -20px;
     margin-left: var(--global_margin);
+    text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000,
+      1px 1px 0 #000;
   }
 
   .upgrades{

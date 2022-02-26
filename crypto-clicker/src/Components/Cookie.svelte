@@ -3,19 +3,18 @@
 
   export const name = "Cookie";
 
-    let increment = 0.00001;
-    let img_path = '/assets/btc_01.png'
-    
-    export const buyUpgrade = () => {
-        if ($score < $costs[name]) {
-            return;
-        }
-        $score -= $costs[name];
-        $increments[name] *= $multipliers[name];
+  let increment = 0.00001;
+  let img_path = "/assets/btc_01.png";
+
+  export const buyUpgrade = () => {
+    if ($score < $costs[name]) {
+      return;
     }
+    $score -= $costs[name];
+    $increments[name] *= $multipliers[name];
+  };
 
-    $: increment = $increments[name];
-
+  $: increment = $increments[name];
 </script>
 
 <!--html-->
@@ -29,8 +28,6 @@
 
 <!--end-html-->
 <style>
-
-
   button {
     transform: scale(1.5);
     background: none;
