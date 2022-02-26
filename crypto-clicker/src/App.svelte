@@ -7,7 +7,7 @@
 
   import Upgrade from "./Components/Upgrade.svelte";
 
-  import { score, costs, increments, info_map } from "./Components/stores.js";
+  import { score, costs, increments, info_map, cost_multiplier } from "./Components/stores.js";
 
   import InfoJuicer from "./Components/InfoJuicer.svelte";
 
@@ -22,19 +22,16 @@
   const add = (event) => {
     var n = event.detail.name;
     if ($costs[n] > $score) {
-      console.log($costs[n], " ", $score);
       return;
     }
     $score -= $costs[n];
+    $costs[n] *= $cost_multiplier;
     if (n == "Clicker") {
       addClicker();
     } else if (n == "Robot01") {
       addRobot01();
     } else if (n == "Robot02") {
       addRobot02();
-    }
-    else if (n == 'Robot02') {
-      addRobot02()
     }
     else if (n == 'GPU') {
       addGPU()
@@ -225,7 +222,7 @@
     <Container title="main" grow={2} show_title={false} >
       <h2 class='score ominous-hover-no-rotate per-click' style='font-size: 40px'>{$score.toFixed(5)} ₿</h2>
       <Cookie bind:this={cookie} />
-      <h3 class='per-click ominous-hover-no-rotate'>{$increments['Cookie'].toFixed(5)} ₿/click</h3>
+      <h3 class='per-click ominous-hover-no-rotate'>{$increments['Cookie'].toFixed(6)} ₿/click</h3>
     </Container>
   <Container title="[miners]" grow={1}>
     <div class='scroll'>
@@ -265,8 +262,8 @@
     
     <h1>[upgrades]</h1>
     <div class='upgrades'>
-      <Upgrade name={'Cookie'} img='/assets/btc_w_cursor_plus.png'/>
-      <Upgrade name={'Clicker'} img='/assets/cursor_plus.png'/>
+      <Upgrade name={'Cookie'} img='/assets/cursor_plus.png'/>
+      <Upgrade name={'Clicker'} img='/assets/btc_w_cursor_plus.png'/>
       <Upgrade name={'Robot01'} img='/assets/robot1_plus.png'/>
       <Upgrade name={'Robot02'} img='/assets/robot2_plus.png'/>
     </div>

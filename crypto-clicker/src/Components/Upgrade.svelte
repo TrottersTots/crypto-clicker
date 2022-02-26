@@ -8,7 +8,7 @@
 
     const upgrade = () => {
         $increments[name] *= $multipliers[name];
-        $score -= $costs[name]
+        $score -= $upgrade_costs[name]
         $upgrade_costs[name] *= $cost_multiplier;
     }
 
@@ -16,7 +16,7 @@
         not_defined = name == 'none'
     }
 
-    $: too_expensive = $costs[name] > $score
+    $: too_expensive = $upgrade_costs[name] > $score
 
     $: target_cost = $upgrade_costs[name]
 </script>
