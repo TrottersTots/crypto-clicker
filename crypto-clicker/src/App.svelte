@@ -3,17 +3,49 @@
 
   import Cookie from "./Components/Cookie.svelte";
   import Clicker from "./Components/Clicker.svelte";
+  import ClickerJuicer from "./Components/ClickerJuicer.svelte";
+
   import Upgrade from "./Components/Upgrade.svelte";
 
-  import { score } from "./Components/stores.js";
+  import { score, costs } from "./Components/stores.js";
 
 	let cookie;
   let clicker;
 	let clickers = Array(0);
+	let robot01s = Array(0);
+	let robot02s = Array(0);
+
+
+  const add = (event) => {
+    var n = event.detail.name;
+    if ($costs[n] > $score) {
+      console.log($costs[n], ' ', $score)
+      return;
+    }
+    $score -= $costs[n];
+    if (n == 'Clicker') {
+      addClicker()
+    }
+    else if (n == 'Robot01') {
+      addRobot01()
+    }
+    else if (n == 'Robot02') {
+      addRobot02()
+    }
+  }
 
   const addClicker = () => {
     clickers += [0];
   };
+
+  const addRobot01 = () => {
+    robot01s += [0];
+  };
+
+  const addRobot02 = () => {
+    robot02s += [0];
+  };
+
 </script>
 
 <div class="title">
@@ -35,9 +67,21 @@
       <Clicker bind:this={clicker}/>
     {/each}
   </Container>
-  <Container title="upgrade" grow={1}>
-    <Upgrade target={cookie} name={'Cookie'}/>
-    <Upgrade target={clicker} name={'Clicker'}/>
+  <Container title="Miners" grow={1}>
+    <ClickerJuicer 
+      on:buy={add}
+      name='Clicker' 
+      description='An extra mouse to click for you'
+      img='/assets/btc_w_cursor.png'
+    />
+    <ClickerJuicer on:buy={add} name='Robot01' description='This Bitcoin mining robot will harvest Bitcoin for you'/>
+    <ClickerJuicer on:buy={add} name='Robot02' description='This Bitcoin mining robot02 will harvest Bitcoin for you'/>
+    
+    <h1>Upgrades</h1>
+    <div class='upgrades'>
+      <Upgrade target={cookie} name={'Cookie'}/>
+      <Upgrade target={clicker} name={'Clicker'}/>
+    </div>
   </Container>
 </div>
 
@@ -63,4 +107,25 @@
     margin-top: -20px;
     margin-left: var(--global_margin);
   }
+
+  @media only screen and (max-width: 600px) {
+    .content {
+      flex-direction: column;
+    }
+    .title {
+      text-align: center;
+    }
+    .footer {
+      font-size: 10px;
+      margin-top: 3px;
+    }
+  }
+
+  .upgrades{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: left;
+  }
+
 </style>

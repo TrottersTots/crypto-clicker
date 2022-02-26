@@ -4,7 +4,7 @@
 </script>
 
 <div style={`flex-grow: ${grow}`}>
-  <h1>{title} container</h1>
+  <h1>{title}</h1>
   <slot />
 </div>
 
@@ -12,7 +12,7 @@
   div {
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: center;
     background-color: rgba(46, 77, 72, 0.6);
     margin: var(--global_margin);

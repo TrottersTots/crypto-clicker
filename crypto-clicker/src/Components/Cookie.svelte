@@ -8,7 +8,7 @@
 
     let increment = .00001;
     let img_path = '/assets/btc_01.png'
-
+    
     export const buyUpgrade = () => {
         if ($score < $cookie_upgrade_cost) {
             return;
