@@ -1,6 +1,6 @@
 import { readable, writable } from "svelte/store";
 
-export let score = writable(0.0);
+export let score = writable(74.9);
 
 /* UPGRADES */
 // Cookie

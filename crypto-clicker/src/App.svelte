@@ -13,19 +13,71 @@
   let cookie;
   let clicker;
   let clickers = Array(0);
+  // -
+  let planet = 0;
+  let dust = 0;
+  let stars = 0;
 
   let info_map = [
     {
       Stage: "Planet",
+      "C02 Emissions": "500T lbs/s",
       Atmosphere: "Normal",
       "Flora/Fauna": "Normal",
       Civilization: "Functional",
     },
   ];
 
+  const setDust = () => {
+    dust = Math.floor(Math.random() * 3);
+    setTimeout(setDust, 20000);
+  };
+  const setStars = () => {
+    stars = Math.floor(Math.random() * 8);
+    setTimeout(setStars, 11000);
+  };
+
+  const updateSpaceScene = (score) => {
+    //update planet based on score
+    switch (true) {
+      case score >= 10000:
+        planet = 8;
+        break;
+      case score >= 5000:
+        planet = 7;
+        break;
+      case score >= 2500:
+        planet = 6;
+        break;
+      case score >= 1250:
+        planet = 5;
+        break;
+      case score >= 625:
+        planet = 4;
+        break;
+      case score >= 312:
+        planet = 3;
+        break;
+      case score >= 156:
+        planet = 2;
+        break;
+      case score >= 75:
+        planet = 1;
+        break;
+      default:
+        planet = 0;
+    }
+  };
+
+  $: {
+    updateSpaceScene($score);
+  }
+
   const addClicker = () => {
     clickers += [0];
   };
+  setDust();
+  setStars();
 </script>
 
 <div class="title">
@@ -39,9 +91,18 @@
     <InfoJuicer {info_map} padding={true} />
     <InfoJuicer>
       <div class="space">
-        <div class=" space_content space__dust" />
-        <div class="space_content space__stars" />
-        <div class="space_content space__planet" />
+        <div
+          class=" space_content space__dust"
+          style={`background-image: url("/assets/dust/${dust}.png")`}
+        />
+        <div
+          class="space_content space__stars"
+          style={`background-image: url("/assets/stars/${stars}.png")`}
+        />
+        <div
+          class="space_content space__planet"
+          style={`background-image: url("/assets/planets/${planet}.gif")`}
+        />
       </div>
     </InfoJuicer>
   </Container>
@@ -80,7 +141,7 @@
   .space {
     width: 300px;
     height: 300px;
-    background-color: magenta;
+    background-color: black;
   }
   .space_content {
     position: absolute;
@@ -88,15 +149,12 @@
     height: inherit;
   }
   .space__dust {
-    background-image: url("/assets/dust/1.png");
     background-repeat: no-repeat;
     background-size: contain;
   }
   .space__stars {
-    background-image: url("/assets/stars/stars_1_1.png");
   }
   .space__planet {
-    background-image: url("/assets/planets/0.gif");
     background-repeat: no-repeat;
     translate: 50% 50%;
     transform: scale(1.5);
