@@ -39,7 +39,11 @@
   <Container title="data" grow={1}>
     <InfoJuicer {info_map} />
     <InfoJuicer>
-      <h4>hello world</h4>
+      <div class="space">
+        <div class=" space_content space__dust" />
+        <div class="space_content space__stars" />
+        <div class="space_content space__planet" />
+      </div>
     </InfoJuicer>
   </Container>
   <Container title="main" grow={2}>
@@ -73,6 +77,31 @@
     flex-direction: row;
     justify-content: space-between;
   }
+
+  .space {
+    width: 180px;
+    height: 180px;
+    background-color: aqua;
+  }
+  .space_content {
+    position: absolute;
+    width: inherit;
+    height: inherit;
+  }
+  .space__dust {
+    background-image: url("/assets/dust/1.png");
+  }
+  .space__stars {
+    background-image: url("/assets/stars/stars_1_1.png");
+  }
+  .space__planet {
+    background-image: url("/assets/planets/1.gif");
+    background-repeat: no-repeat;
+    background-size: auto;
+    position: relative;
+    translate: 40px 40px;
+  }
+
   .footer {
     color: antiquewhite;
     margin-top: -20px;
