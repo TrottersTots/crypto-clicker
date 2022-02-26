@@ -1,21 +1,20 @@
 <script>
   import Container from "./Components/Container.svelte";
 
-	import Cookie from "./Components/Cookie.svelte";
-	import Clicker from "./Components/Clicker.svelte";
-	import Upgrade from "./Components/Upgrade.svelte";
+  import Cookie from "./Components/Cookie.svelte";
+  import Clicker from "./Components/Clicker.svelte";
+  import Upgrade from "./Components/Upgrade.svelte";
 
-	import { score } from "./Components/stores.js";
+  import { score } from "./Components/stores.js";
 
 	let cookie;
+  let clicker;
 	let clickers = Array(0);
 
-	const addClicker = () => {
-		clickers += [0];
-	}
-
+  const addClicker = () => {
+    clickers += [0];
+  };
 </script>
-
 
 <div class="title">
   <h1>Crypto Clicker</h1>
@@ -30,16 +29,17 @@
     <button on:click={addClicker}>
       Add Clicker
     </button>
-    {#each clickers as clicker}
-      <Clicker/>
+    {#each clickers as _clicker}
+      <Clicker bind:this={clicker}/>
     {/each}
   </Container>
   <Container title="upgrade" grow={1}>
-    <Upgrade target={cookie}/>
+    <Upgrade target={cookie} name={'Cookie'}/>
+    <Upgrade target={clicker} name={'Clicker'}/>
   </Container>
 </div>
 
-<div class='footer'>
+<div class="footer">
   <h4>Nathan Inbar && Justin Stitt</h4>
 </div>
 
@@ -47,10 +47,21 @@
 <style>
   .title {
     margin: var(--global_margin);
+    color: antiquewhite;
+  }
+
+  .title > h1 {
+    font-family: "Blade Runner Movie Font";
+    margin-bottom: -10px;
   }
   .content {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+  }
+  .footer {
+    color: antiquewhite;
+    margin-top: -20px;
+    margin-left: var(--global_margin);
   }
 </style>

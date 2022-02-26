@@ -11,12 +11,15 @@
 
     export const buyUpgrade = () => {
         if ($score < $cookie_upgrade_cost) {
-            console.log('too expensive');
             return;
         }
         $score -= $cookie_upgrade_cost;
         increment *= $cookie_multiplier;
         update_cookie_upgrade_cost();
+    }
+
+    export const getUpgradeCost = () => {
+        return $cookie_upgrade_cost;
     }
 
 </script>
