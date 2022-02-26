@@ -1,26 +1,21 @@
 <script>
-  import { score } from "./stores.js";
-  import { cookie_multiplier } from "./stores.js";
-  import { cookie_upgrade_cost } from "./stores.js";
-  import { update_cookie_upgrade_cost } from "./stores.js";
+  import { score, increments, costs, multipliers } from "./stores.js";
 
   export const name = "Cookie";
 
-  let increment = 0.00001;
-  let img_path = "/assets/btc_01.png";
-
-  export const buyUpgrade = () => {
-    if ($score < $cookie_upgrade_cost) {
-      return;
+    let increment = 0.00001;
+    let img_path = '/assets/btc_01.png'
+    
+    export const buyUpgrade = () => {
+        if ($score < $costs[name]) {
+            return;
+        }
+        $score -= $costs[name];
+        $increments[name] *= $multipliers[name];
     }
-    $score -= $cookie_upgrade_cost;
-    increment *= $cookie_multiplier;
-    update_cookie_upgrade_cost();
-  };
 
-  export const getUpgradeCost = () => {
-    return $cookie_upgrade_cost;
-  };
+    $: increment = $increments[name];
+
 </script>
 
 <!--html-->
@@ -31,11 +26,11 @@
 >
   <img class="ominous-hover" alt="btc" src={img_path} draggable="false" />
 </button>
-<h2>Current Clicker Increment: {increment}</h2>
-<!-- <button on:click={buyUpgrade}>Clicker Upgrade {$cookie_upgrade_cost}</button> -->
 
 <!--end-html-->
 <style>
+
+
   button {
     background: none;
     border: none;
