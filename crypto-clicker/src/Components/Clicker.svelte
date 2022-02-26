@@ -2,7 +2,7 @@
     import { onMount } from 'svelte';
     import { score, increments, costs, multipliers } from './stores.js';
     export let speed = 1;
-    export const name = 'Clicker'
+    export let name = 'Clicker'
 
     let clicker; // to bind
     let mounted = false;

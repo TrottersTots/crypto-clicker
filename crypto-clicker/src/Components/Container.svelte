@@ -17,7 +17,7 @@
     flex-direction: column;
     justify-content: flex-start;
     align-items: center;
-    background-color: rgba(46, 77, 72, 0.6);
+    /* background-color: rgba(46, 77, 72, 0.6); */
     margin: var(--global_margin);
   }
   div > h1 {

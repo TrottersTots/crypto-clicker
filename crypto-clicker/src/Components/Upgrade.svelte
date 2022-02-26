@@ -24,7 +24,7 @@
 <!--html-->
 {#if !not_defined}
 <button on:click={upgrade} class:tooExpensive={too_expensive} class:not_defined={not_defined}>
-    <img src={img} alt='upgrade'/>
+    <img src={img} alt='upgrade' class:scaleUp={name=='Robot02'}/>
     <h3 class='cost'>{target_cost.toFixed(5)}</h3>
     <!-- Buy {name} Upgrade {target_cost === undefined ? target_cost : target_cost.toFixed(5)} -->
 </button>
@@ -33,9 +33,11 @@
 
 <style>
     img {
-        transform: scale(0.8);
+        transform: scale(.8);
         max-width: 50px;
         max-height: 50px;
+        min-width: 50px;
+        min-height: 50px;
         margin-left: 0px;
     }
     .cost {
@@ -78,5 +80,9 @@
         -moz-user-select: none; /* Old versions of Firefox */
         -ms-user-select: none; /* Internet Explorer/Edge */
         user-select: none; /* Non-prefixed version, currently*/
+    }
+
+    .scaleUp{
+        transform: scaleX(1.2) translateY(5px) translateX(-3px);
     }
 </style>
