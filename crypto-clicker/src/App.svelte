@@ -1,21 +1,27 @@
 <script>
+  import Container from "./Components/Container.svelte";
+
   export let name;
 </script>
 
-<main>
-  <div class="content">
-    <div class="info__container">
-      <h1>info container</h1>
-    </div>
-    <div class="main__container">
-      <h1>main container</h1>
-    </div>
-    <div class="upgrade__container">
-      <h1>upgrade container</h1>
-    </div>
-  </div>
-  <!-- end content -->
-</main>
+<div class="title">
+  <h1>Crypto Clicker</h1>
+  <h4>Nathan Inbar && Justin Stitt</h4>
+</div>
+<div class="content">
+  <Container title="info" grow={1} />
+  <Container title="main" grow={2} />
+  <Container title="upgrade" grow={1} />
+</div>
 
+<!-- end content -->
 <style>
+  .title {
+    margin: var(--global_margin);
+  }
+  .content {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+  }
 </style>
