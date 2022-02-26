@@ -95,17 +95,17 @@
   }
 
   const addClicker = () => {
-    clickers += [0];
+    clickers = [...clickers, 0]
   };
   setDust();
   setStars();
 
   const addRobot01 = () => {
-    robot01s += [0];
+    robot01s = [...robot01s, 0];
   };
 
   const addRobot02 = () => {
-    robot02s += [0];
+    robot02s = [...robot02s, 0];
   };
 
 </script>
@@ -172,6 +172,15 @@
       <Upgrade name={'Robot02'} img='/assets/btc_w_cursor_plus.png'/>
     </div>
   </Container>
+  {#each clickers as c}
+    <Clicker name = {'Clicker'}/>
+  {/each}
+  {#each robot01s as c}
+    <Clicker name = {'Robot01'}/>
+  {/each}
+  {#each robot02s as c}
+    <Clicker name = {'Robot02'}/>
+  {/each}
 </div>
 
 <div class="footer">
