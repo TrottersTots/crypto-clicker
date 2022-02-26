@@ -14,13 +14,12 @@
   let clicker;
   let clickers = Array(0);
 
-  console.log($cookie_increment);
-  // [`Cookie Increment: ${$cookie_increment}`, ]
   let info_map = [
     {
-      "Cookie Increment": $cookie_increment,
-      "Current Clickers": 0,
-      "BTC per second": 0,
+      Stage: "Planet",
+      Atmosphere: "Normal",
+      "Flora/Fauna": "Normal",
+      Civilization: "Functional",
     },
   ];
 
@@ -36,8 +35,8 @@
 </div>
 
 <div class="content">
-  <Container title="data" grow={1}>
-    <InfoJuicer {info_map} />
+  <Container title="[eco footprint]" grow={1}>
+    <InfoJuicer {info_map} padding={true} />
     <InfoJuicer>
       <div class="space">
         <div class=" space_content space__dust" />
@@ -79,9 +78,9 @@
   }
 
   .space {
-    width: 180px;
-    height: 180px;
-    background-color: aqua;
+    width: 300px;
+    height: 300px;
+    background-color: magenta;
   }
   .space_content {
     position: absolute;
@@ -90,16 +89,17 @@
   }
   .space__dust {
     background-image: url("/assets/dust/1.png");
+    background-repeat: no-repeat;
+    background-size: contain;
   }
   .space__stars {
     background-image: url("/assets/stars/stars_1_1.png");
   }
   .space__planet {
-    background-image: url("/assets/planets/1.gif");
+    background-image: url("/assets/planets/0.gif");
     background-repeat: no-repeat;
-    background-size: auto;
-    position: relative;
-    translate: 40px 40px;
+    translate: 50% 50%;
+    transform: scale(1.5);
   }
 
   .footer {
