@@ -13,28 +13,25 @@
 
   let cookie;
   let clicker;
-	let clickers = Array(0);
-	let robot01s = Array(0);
-	let robot02s = Array(0);
-
+  let clickers = Array(0);
+  let robot01s = Array(0);
+  let robot02s = Array(0);
 
   const add = (event) => {
     var n = event.detail.name;
     if ($costs[n] > $score) {
-      console.log($costs[n], ' ', $score)
+      console.log($costs[n], " ", $score);
       return;
     }
     $score -= $costs[n];
-    if (n == 'Clicker') {
-      addClicker()
+    if (n == "Clicker") {
+      addClicker();
+    } else if (n == "Robot01") {
+      addRobot01();
+    } else if (n == "Robot02") {
+      addRobot02();
     }
-    else if (n == 'Robot01') {
-      addRobot01()
-    }
-    else if (n == 'Robot02') {
-      addRobot02()
-    }
-  }
+  };
 
   // [`Cookie Increment: ${$cookie_increment}`, ]
   let planet = 0;
@@ -47,7 +44,9 @@
       "C02 Emissions": "500T lbs/s",
       Atmosphere: "Normal",
       "Flora/Fauna": "Normal",
-      Civilization: "Functional",}]
+      Civilization: "Functional",
+    },
+  ];
 
   const setDust = () => {
     dust = Math.floor(Math.random() * 3);
@@ -60,33 +59,39 @@
 
   const updateSpaceScene = (score) => {
     //update planet based on score
+    const updatePlanet = (planetID) => {
+      if (planet > planetID) {
+        return;
+      }
+      planet = planetID;
+    };
     switch (true) {
       case score >= 10000:
-        planet = 8;
+        updatePlanet(8);
         break;
       case score >= 5000:
-        planet = 7;
+        updatePlanet(7);
         break;
       case score >= 2500:
-        planet = 6;
+        updatePlanet(6);
         break;
       case score >= 1250:
-        planet = 5;
+        updatePlanet(5);
         break;
       case score >= 625:
-        planet = 4;
+        updatePlanet(4);
         break;
       case score >= 312:
-        planet = 3;
+        updatePlanet(3);
         break;
       case score >= 156:
-        planet = 2;
+        updatePlanet(2);
         break;
       case score >= 75:
-        planet = 1;
+        updatePlanet(1);
         break;
       default:
-        planet = 0;
+        updatePlanet(0);
     }
   };
 
@@ -107,7 +112,6 @@
   const addRobot02 = () => {
     robot02s += [0];
   };
-
 </script>
 
 <div class="title">
@@ -136,40 +140,46 @@
       </div>
     </InfoJuicer>
   </Container>
-    <Container title="main" grow={2} show_title={false} >
-      <h2 class='score ominous-hover-no-rotate per-click' style='font-size: 40px'>{$score.toFixed(5)} ₿</h2>
-      <Cookie bind:this={cookie} />
-      <h3 class='per-click ominous-hover-no-rotate'>{$increments['Cookie'].toFixed(5)} ₿/click</h3>
-      <button on:click={addClicker}> Add Clicker </button>
-      {#each clickers as _clicker}
+  <Container title="main" grow={2}>
+    <h2 class="score ominous-hover-no-rotate per-click" style="font-size: 40px">
+      {$score.toFixed(5)} ₿
+    </h2>
+    <Cookie bind:this={cookie} />
+    <h3 class="per-click ominous-hover-no-rotate">
+      {$increments["Cookie"].toFixed(5)} ₿/click
+    </h3>
+    <button on:click={addClicker}> Add Clicker </button>
+    {#each clickers as _clicker}
       <Clicker bind:this={clicker} />
-      {/each}
-    </Container>
-  <Container title="[miners]" grow={1}>
-    <ClickerJuicer 
+    {/each}
+  </Container>
+  <Container title="Miners" grow={1}>
+    <ClickerJuicer
       len={clickers.length}
       on:buy={add}
-      name='Clicker' 
-      description='An extra mouse to click for you'
-      img='/assets/btc_w_cursor.png'
+      name="Clicker"
+      description="An extra mouse to click for you"
+      img="/assets/btc_w_cursor.png"
     />
-    <ClickerJuicer 
-    len={robot01s.length}
-    on:buy={add} 
-    name='Robot01' 
-    description='This Bitcoin mining robot will harvest Bitcoin for you'/>
-    <ClickerJuicer 
-    len={robot02s.length}
-    on:buy={add} 
-    name='Robot02' 
-    description='This Bitcoin mining robot02 will harvest Bitcoin for you'/>
-    
-    <h1>[upgrades]</h1>
-    <div class='upgrades'>
-      <Upgrade name={'Cookie'} img='/assets/btc_w_cursor_plus.png'/>
-      <Upgrade name={'Clicker'} img='/assets/btc_w_cursor_plus.png'/>
-      <Upgrade name={'Robot01'} img='/assets/btc_w_cursor_plus.png'/>
-      <Upgrade name={'Robot02'} img='/assets/btc_w_cursor_plus.png'/>
+    <ClickerJuicer
+      len={robot01s.length}
+      on:buy={add}
+      name="Robot01"
+      description="This Bitcoin mining robot will harvest Bitcoin for you"
+    />
+    <ClickerJuicer
+      len={robot02s.length}
+      on:buy={add}
+      name="Robot02"
+      description="This Bitcoin mining robot02 will harvest Bitcoin for you"
+    />
+
+    <h1>Upgrades</h1>
+    <div class="upgrades">
+      <Upgrade name={"Cookie"} img="/assets/btc_w_cursor_plus.png" />
+      <Upgrade name={"Clicker"} img="/assets/btc_w_cursor_plus.png" />
+      <Upgrade name={"Robot01"} img="/assets/btc_w_cursor_plus.png" />
+      <Upgrade name={"Robot02"} img="/assets/btc_w_cursor_plus.png" />
     </div>
   </Container>
 </div>
@@ -246,13 +256,12 @@
     }
   }
 
-  .upgrades{
+  .upgrades {
     width: 100%;
     display: flex;
     flex-direction: row;
-    justify-content: space-evenly; 
+    justify-content: space-evenly;
     align-items: left;
     margin-bottom: 20px;
   }
-
 </style>
