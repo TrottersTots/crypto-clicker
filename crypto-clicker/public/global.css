@@ -9,6 +9,7 @@
   font-style: normal;
   font-display: swap;
 }
+
 html {
   --global_margin: 5px;
 }
@@ -22,9 +23,12 @@ body {
   background-size: cover;
   background-repeat: no-repeat;
   background-color: black;
-  color: antiquewhite;
+  color: aliceblue;
 }
 
+button:hover {
+  cursor: url("/assets/cursor_.png"), pointer;
+}
 .ominous-hover-no-rotate {
   animation: float2 4s ease-in-out infinite;
   /* text-shadow: 4px 4px #5c1515; */
@@ -33,14 +37,14 @@ body {
 
 @keyframes float2 {
   0% {
-    transform: translate(0, 0) 
+    transform: translate(0, 0);
   }
 
   50% {
-    transform: translate(0, 4px)
+    transform: translate(0, 4px);
   }
 
   100% {
-    transform: translate(0, 0)
+    transform: translate(0, 0);
   }
 }

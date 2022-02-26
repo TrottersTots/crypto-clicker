@@ -52,3 +52,14 @@ export let increments = writable({
   Robot02: 0.001,
   Cookie: 0.00001,
 });
+
+// info
+export let info_map = writable([
+  {
+    Stage: "Planet",
+    "C02 Emissions": "543 lbs/sec",
+    Atmosphere: "Normal",
+    "Flora/Fauna": "Normal",
+    Civilization: "Functional",
+  },
+]);
