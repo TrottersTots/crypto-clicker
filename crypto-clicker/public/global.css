@@ -17,4 +17,6 @@ body {
 }
 body {
   font-family: Consolas, Roboto, sans-serif;
+  background-image: url("/images/background.gif");
+  background-size: cover;
 }
