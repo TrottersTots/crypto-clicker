@@ -21,9 +21,12 @@
   };
 
   $: increment = $increments[name];
+
+  const a = new Audio("/sounds/click_001.mp3");
   let play = () => {
-    let a = new Audio("/sounds/click_001.mp3");
-    a.play();
+    if (!a.paused) {
+      a.play();
+    }
   };
 </script>
 
