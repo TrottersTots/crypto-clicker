@@ -13,6 +13,7 @@
     increments,
     info_map,
     cost_multiplier,
+    highscore,
   } from "./Components/stores.js";
 
   import InfoJuicer from "./Components/InfoJuicer.svelte";
@@ -126,8 +127,11 @@
       planet = planetID;
       updateEcoInfo();
     };
-    let emission_factor = 31.4;
-
+    let emission_factor = 31.4 + 31.4 * $highscore;
+    if (isNaN(emission_factor)) {
+      emission_factor = 524;
+    }
+    let emissions = ((planet + 1) * emission_factor).toFixed(3);
     switch (true) {
       case score >= 10000:
         updatePlanet(8);
@@ -153,24 +157,22 @@
         break;
       case score >= 312:
         updatePlanet(3);
-        $info_map[0]["C02 Emissions"] = `${planet * emission_factor}T lbs/sec`;
+        $info_map[0]["C02 Emissions"] = `${emissions}T lbs/sec`;
 
         break;
       case score >= 156:
         updatePlanet(2);
-        $info_map[0]["C02 Emissions"] = `${planet * emission_factor}B lbs/sec`;
+        $info_map[0]["C02 Emissions"] = `${emissions}B lbs/sec`;
 
         break;
       case score >= 75:
         updatePlanet(1);
-        $info_map[0]["C02 Emissions"] = `${planet * emission_factor}M lbs/sec`;
+        $info_map[0]["C02 Emissions"] = `${emissions}M lbs/sec`;
 
         break;
       default:
         updatePlanet(0);
-        $info_map[0]["C02 Emissions"] = `${
-          ((planet + 1) * emission_factor) / 2
-        }K lbs/sec`;
+        $info_map[0]["C02 Emissions"] = `${emissions} tons`;
     }
   };
 
@@ -221,6 +223,7 @@
           style={`background-image: url("/assets/planets/${planet}.gif")`}
         />
       </div>
+      <span>{"highscore: " + $highscore.toFixed(5) + "₿"}</span>
     </InfoJuicer>
   </Container>
   <Container title="main" grow={2} show_title={false}>
@@ -296,6 +299,9 @@
 
 <!-- end content -->
 <style>
+  span {
+    color: aliceblue;
+  }
   .score {
     margin-bottom: 0px;
     margin-top: 5px;
@@ -332,8 +338,7 @@
     background-repeat: no-repeat;
     background-size: contain;
   }
-  .space__stars {
-  }
+
   .space__planet {
     background-repeat: no-repeat;
     margin-left: 150px;
