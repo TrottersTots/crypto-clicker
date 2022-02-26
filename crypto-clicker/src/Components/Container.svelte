@@ -5,7 +5,9 @@
 </script>
 
 <div style={`flex-grow: ${grow}`}>
+  {#if show_title}
   <h1>{title}</h1>
+  {/if}
   <slot />
 </div>
 

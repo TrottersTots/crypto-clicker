@@ -136,16 +136,16 @@
       </div>
     </InfoJuicer>
   </Container>
-  <Container title="main" grow={2} >
-  <h2 class='score ominous-hover-no-rotate per-click' style='font-size: 40px'>{$score.toFixed(5)} ₿</h2>
-    <Cookie bind:this={cookie} />
-    <h3 class='per-click ominous-hover-no-rotate'>{$increments['Cookie'].toFixed(5)} ₿/click</h3>
-    <button on:click={addClicker}> Add Clicker </button>
-    {#each clickers as _clicker}
+    <Container title="main" grow={2} show_title={false} >
+      <h2 class='score ominous-hover-no-rotate per-click' style='font-size: 40px'>{$score.toFixed(5)} ₿</h2>
+      <Cookie bind:this={cookie} />
+      <h3 class='per-click ominous-hover-no-rotate'>{$increments['Cookie'].toFixed(5)} ₿/click</h3>
+      <button on:click={addClicker}> Add Clicker </button>
+      {#each clickers as _clicker}
       <Clicker bind:this={clicker} />
-    {/each}
-  </Container>
-  <Container title="Miners" grow={1}>
+      {/each}
+    </Container>
+  <Container title="[miners]" grow={1}>
     <ClickerJuicer 
       len={clickers.length}
       on:buy={add}
@@ -164,7 +164,7 @@
     name='Robot02' 
     description='This Bitcoin mining robot02 will harvest Bitcoin for you'/>
     
-    <h1>Upgrades</h1>
+    <h1>[upgrades]</h1>
     <div class='upgrades'>
       <Upgrade name={'Cookie'} img='/assets/btc_w_cursor_plus.png'/>
       <Upgrade name={'Clicker'} img='/assets/btc_w_cursor_plus.png'/>
@@ -184,6 +184,11 @@
     margin-bottom: 0px;
     margin-top: 5px;
   }
+
+  .main {
+    justify-self: center;
+  }
+
   .title {
     margin-top: 50px;
     margin-bottom: 15px;
