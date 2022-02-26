@@ -9,6 +9,7 @@
   font-style: normal;
   font-display: swap;
 }
+
 html {
   --global_margin: 5px;
 }
@@ -22,5 +23,43 @@ body {
   background-size: cover;
   background-repeat: no-repeat;
   background-color: black;
-  color: antiquewhite;
+  color: aliceblue;
+}
+
+button:hover {
+  cursor: url("/assets/cursor_.png"), pointer;
+}
+.ominous-hover-no-rotate {
+  animation: float2 4s ease-in-out infinite;
+  /* text-shadow: 4px 4px #5c1515; */
+  text-shadow: 0px 1px aliceblue, 5px 5px 5px rgba(140, 148, 160, 0.479);
+}
+
+@keyframes float2 {
+  0% {
+    transform: translate(0, 0);
+  }
+
+  50% {
+    transform: translate(0, 4px);
+  }
+
+  100% {
+    transform: translate(0, 0);
+  }
+}
+
+::-webkit-scrollbar {
+  width: 5px;
+}
+ 
+::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+  border-radius: 10px;
+
+}
+ 
+::-webkit-scrollbar-thumb {
+  background-color: darkgrey;
+  outline: 1px solid slategrey;
 }
