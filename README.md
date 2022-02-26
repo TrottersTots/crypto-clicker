@@ -1,8 +1,7 @@
+
 # Crypto Clicker
 <p style="text-align: center"><a href="www.cryptoclicker.org">www.cryptoclicker.org</a></p>
 <img src="readme_assets/title.svg" width="400" height="100" />
-
-
 
 []("crypto-clicker/public/assets/planets/0.gif")
 []("crypto-clicker/public/assets/planets/1.gif")
