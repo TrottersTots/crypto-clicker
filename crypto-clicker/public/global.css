@@ -20,4 +20,6 @@ body {
   font-family: Consolas, Roboto, sans-serif;
   background-image: url("/assets/background.gif");
   background-size: cover;
+  background-repeat: no-repeat;
+  background-color: black;
 }
