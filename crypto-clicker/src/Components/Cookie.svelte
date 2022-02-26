@@ -15,12 +15,17 @@
   };
 
   $: increment = $increments[name];
+  let play = () => {
+    let a = new Audio("/sounds/click_001.mp3");
+    a.play();
+  };
 </script>
 
 <!--html-->
 <button
   on:click={() => {
     $score += increment;
+    play()
   }}
 >
   <img class="ominous-hover" alt="btc" src={img_path} draggable="false" />
