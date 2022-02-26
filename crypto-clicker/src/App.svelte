@@ -277,7 +277,7 @@
         len={robot02s.length}
         on:buy={add}
         name="Robot02"
-        description="This Bitcoin mining robot02 will harvest Bitcoin for you"
+        description="This Bitcoin mining drone will harvest Bitcoin for you"
         img="/assets/robot_2.gif"
         display_name={"Crypto Drone"}
       />
