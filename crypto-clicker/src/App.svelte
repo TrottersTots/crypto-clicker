@@ -211,6 +211,11 @@
 <div class="content">
   <Container title="[eco footprint]" grow={1}>
     <InfoJuicer padding={true} />
+    <span
+      ><button on:click={cycleDust}>🌌</button><button on:click={cycleStars}
+        >🌠</button
+      ></span
+    >
     <InfoJuicer>
       <div class="space">
         <div
@@ -300,6 +305,14 @@
 
 <!-- end content -->
 <style>
+  span > button {
+    border: none;
+    background: transparent;
+    font-size: 1.8rem;
+  }
+  span {
+    background-color: aliceblue;
+  }
   .score {
     margin-bottom: 0px;
     margin-top: 5px;
@@ -345,12 +358,12 @@
     width: 100px;
     height: 100px;
     margin-left: 100px;
-    margin-top: ;
+    margin-top: 100px;
   }
 
   .footer {
     color: antiquewhite;
-    margin-top: -60px;
+    margin-top: -40px;
     margin-left: var(--global_margin);
     text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000,
       1px 1px 0 #000;
