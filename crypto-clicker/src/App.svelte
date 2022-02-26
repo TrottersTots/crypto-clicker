@@ -8,8 +8,11 @@
   import Upgrade from "./Components/Upgrade.svelte";
 
   import { score, costs } from "./Components/stores.js";
+  import { cookie_increment } from "./Components/stores.js";
 
-	let cookie;
+  import InfoJuicer from "./Components/InfoJuicer.svelte";
+
+  let cookie;
   let clicker;
 	let clickers = Array(0);
 	let robot01s = Array(0);
@@ -34,6 +37,16 @@
     }
   }
 
+  console.log($cookie_increment);
+  // [`Cookie Increment: ${$cookie_increment}`, ]
+  let info_map = [
+    {
+      "Cookie Increment": $cookie_increment,
+      "Current Clickers": 0,
+      "BTC per second": 0,
+    },
+  ];
+
   const addClicker = () => {
     clickers += [0];
   };
@@ -49,22 +62,25 @@
 </script>
 
 <div class="title">
-  <h1 class='glitchy'>Crypto Clicker</h1>
-  <h1 class='glitchy'>Crypto Clicker</h1>
-  <h1 class='glitchy'>Crypto Clicker</h1>
+  <h1 class="glitchy">Crypto Clicker</h1>
+  <h1 class="glitchy">Crypto Clicker</h1>
+  <h1 class="glitchy">Crypto Clicker</h1>
 </div>
 
 <div class="content">
-  <Container title="info" grow={1} />
+  <Container title="data" grow={1}>
+    <InfoJuicer {info_map} />
+    <InfoJuicer>
+      <h4>hello world</h4>
+    </InfoJuicer>
+  </Container>
   <Container title="main" grow={2}>
-    <Cookie bind:this={cookie}/>
-      <h2>{$score.toFixed(5)} : BTC</h2>
-	
-    <button on:click={addClicker}>
-      Add Clicker
-    </button>
+    <Cookie bind:this={cookie} />
+    <h2>{$score.toFixed(5)} : BTC</h2>
+
+    <button on:click={addClicker}> Add Clicker </button>
     {#each clickers as _clicker}
-      <Clicker bind:this={clicker}/>
+      <Clicker bind:this={clicker} />
     {/each}
   </Container>
   <Container title="Miners" grow={1}>
@@ -95,7 +111,6 @@
     margin-top: 50px;
     margin-bottom: 15px;
     margin-left: var(--global-margin);
-
   }
   .content {
     display: flex;
