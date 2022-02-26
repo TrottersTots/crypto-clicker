@@ -37,3 +37,15 @@ export let increments = writable(
     'Cookie': 0.00001,
     'GPU': 0.00006,
 },);
+
+// info
+export let info_map = writable([
+    {
+      Stage: "Planet",
+      "C02 Emissions": "543 lbs/sec",
+      Atmosphere: "Normal",
+      "Flora/Fauna": "Normal",
+      Civilization: "Functional",
+    },
+  ]);
+  

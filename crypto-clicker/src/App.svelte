@@ -296,10 +296,6 @@
     margin-top: 5px;
   }
 
-  .main {
-    justify-self: center;
-  }
-
   .title {
     margin-top: 50px;
     margin-bottom: 15px;
@@ -389,5 +385,7 @@
     overflow-y: scroll;
     overflow-x: hidden;
     height:30%;
+    border: 1px solid rgba(240, 248, 255, 0.3);
+    border-radius: 5px;
   }
 </style>
