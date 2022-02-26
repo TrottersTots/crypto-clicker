@@ -7,8 +7,9 @@
 
   import { score } from "./Components/stores.js";
 
-  let cookie;
-  let clickers = Array(0);
+	let cookie;
+  let clicker;
+	let clickers = Array(0);
 
   const addClicker = () => {
     clickers += [0];
@@ -22,16 +23,19 @@
 <div class="content">
   <Container title="info" grow={1} />
   <Container title="main" grow={2}>
-    <Cookie bind:this={cookie} />
-    <h2>{$score.toFixed(5)} : BTC</h2>
-
-    <button on:click={addClicker}> Add Clicker </button>
-    {#each clickers as clicker}
-      <Clicker />
+    <Cookie bind:this={cookie}/>
+	  <h2>{$score.toFixed(5)} : BTC</h2>
+	
+    <button on:click={addClicker}>
+      Add Clicker
+    </button>
+    {#each clickers as _clicker}
+      <Clicker bind:this={clicker}/>
     {/each}
   </Container>
   <Container title="upgrade" grow={1}>
-    <Upgrade target={cookie} />
+    <Upgrade target={cookie} name={'Cookie'}/>
+    <Upgrade target={clicker} name={'Clicker'}/>
   </Container>
 </div>
 
