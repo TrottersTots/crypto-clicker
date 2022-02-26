@@ -12,6 +12,7 @@
 
 html {
   --global_margin: 5px;
+  user-select: none; /* Standard */
 }
 html,
 body {

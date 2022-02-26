@@ -54,7 +54,7 @@
   };
   const setStars = () => {
     stars = Math.floor(Math.random() * 8);
-    setTimeout(setStars, 11000);
+    setTimeout(setStars, 10000);
   };
 
   const updateEcoInfo = () => {
