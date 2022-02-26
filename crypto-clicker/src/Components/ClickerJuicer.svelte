@@ -1,6 +1,6 @@
 <script>
     import { createEventDispatcher } from 'svelte';
-    import { costs } from "./stores.js";
+    import { score, costs, increments } from "./stores.js";
 
     const dispatch = createEventDispatcher()
 
@@ -8,8 +8,11 @@
     export let name = 'Name';
     export let description = 'Lorem ipsum dolor sit amet...';
     export let img = '/assets/robot_1.gif'
+    export let len = 0;
     let cost = 0.0;
+    let increment = 0.0;
     let me;
+    let can_afford = false;
 
     const buy = () => {
         dispatch('buy', {
@@ -17,12 +20,23 @@
             'amount': 1,
         })
     }
+
     $: cost = $costs[name]
+
+    $: increment = $increments[name]
+
+    $: can_afford = cost <= $score;
+
+    $: total = increment * len
+
 </script>
 
 <!--html-->
-<button on:click={buy}>
-    <div class='container' transition:slide>
+<button on:click={buy} class:cant_afford={!can_afford}>
+    <div class='container' transition:slide >
+        <div class="len">
+            <h3>{len}</h3>
+        </div>
         <img class='gif' alt={name} src={img} draggable='false'/>
         <div class='text'>
             <p class='name'>
@@ -34,11 +48,16 @@
         </div>
         <div class='btc'>
             <div class="cost">
-                <h3>-{cost}₿</h3>
+                <h3>-{cost.toFixed(5)}₿</h3>
             </div>
             <div class="income">
-                <h3>+0.004₿/s</h3>
+                <h3>+{increment.toFixed(5)}₿/s</h3>
             </div>
+            {#if total > 0}
+            <div class='total'>
+                <h3>total: {total.toFixed(5)}</h3>
+            </div>
+            {/if}
         </div>
     </div>
 </button>
@@ -76,9 +95,21 @@
     .cost {
         color: red;
         margin-left: 25px;
-        margin-top: 10px;
         text-align: center;
+    }
 
+    .len {
+        font-size: 10px;
+        position: absolute;
+        color: rgb(183, 189, 177);
+        margin-left: 8px;
+        margin-top: 0;
+        text-align: center;
+        margin-top: -6px;
+    }
+
+    .total {
+        color: lightseagreen;
     }
 
     .gif {
@@ -130,5 +161,16 @@
 
     button:active {
         transform: scale(1.06) translateX(-5px) translateY(-5px);
+    }
+
+    .cant_afford {
+        filter: opacity(50%);
+        pointer-events: none;
+        -webkit-touch-callout: none; /* iOS Safari */
+        -webkit-user-select: none; /* Safari */
+        -khtml-user-select: none; /* Konqueror HTML */
+        -moz-user-select: none; /* Old versions of Firefox */
+        -ms-user-select: none; /* Internet Explorer/Edge */
+        user-select: none; /* Non-prefixed version, currently*/
     }
 </style>

@@ -1,6 +1,7 @@
 <script>
   export let title;
   export let grow;
+  export let show_title = true;
 </script>
 
 <div style={`flex-grow: ${grow}`}>

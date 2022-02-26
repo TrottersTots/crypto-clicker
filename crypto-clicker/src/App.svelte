@@ -7,8 +7,7 @@
 
   import Upgrade from "./Components/Upgrade.svelte";
 
-  import { score, costs } from "./Components/stores.js";
-  import { cookie_increment } from "./Components/stores.js";
+  import { score, costs, increments } from "./Components/stores.js";
 
   import InfoJuicer from "./Components/InfoJuicer.svelte";
 
@@ -37,11 +36,10 @@
     }
   }
 
-  console.log($cookie_increment);
   // [`Cookie Increment: ${$cookie_increment}`, ]
   let info_map = [
     {
-      "Cookie Increment": $cookie_increment,
+      "Cookie Increment": $increments['Cookie'],
       "Current Clickers": 0,
       "BTC per second": 0,
     },
@@ -78,10 +76,10 @@
       </div>
     </InfoJuicer>
   </Container>
-  <Container title="main" grow={2}>
+  <Container title="main" grow={2} >
+  <h2 class='score ominous-hover-no-rotate per-click' style='font-size: 40px'>{$score.toFixed(5)} ₿</h2>
     <Cookie bind:this={cookie} />
-    <h2>{$score.toFixed(5)} : BTC</h2>
-
+    <h3 class='per-click ominous-hover-no-rotate'>{$increments['Cookie'].toFixed(5)} ₿/click</h3>
     <button on:click={addClicker}> Add Clicker </button>
     {#each clickers as _clicker}
       <Clicker bind:this={clicker} />
@@ -89,18 +87,29 @@
   </Container>
   <Container title="Miners" grow={1}>
     <ClickerJuicer 
+      len={clickers.length}
       on:buy={add}
       name='Clicker' 
       description='An extra mouse to click for you'
       img='/assets/btc_w_cursor.png'
     />
-    <ClickerJuicer on:buy={add} name='Robot01' description='This Bitcoin mining robot will harvest Bitcoin for you'/>
-    <ClickerJuicer on:buy={add} name='Robot02' description='This Bitcoin mining robot02 will harvest Bitcoin for you'/>
+    <ClickerJuicer 
+    len={robot01s.length}
+    on:buy={add} 
+    name='Robot01' 
+    description='This Bitcoin mining robot will harvest Bitcoin for you'/>
+    <ClickerJuicer 
+    len={robot02s.length}
+    on:buy={add} 
+    name='Robot02' 
+    description='This Bitcoin mining robot02 will harvest Bitcoin for you'/>
     
     <h1>Upgrades</h1>
     <div class='upgrades'>
-      <Upgrade target={cookie} name={'Cookie'}/>
-      <Upgrade target={clicker} name={'Clicker'}/>
+      <Upgrade name={'Cookie'} img='/assets/btc_w_cursor_plus.png'/>
+      <Upgrade name={'Clicker'} img='/assets/btc_w_cursor_plus.png'/>
+      <Upgrade name={'Robot01'} img='/assets/btc_w_cursor_plus.png'/>
+      <Upgrade name={'Robot02'} img='/assets/btc_w_cursor_plus.png'/>
     </div>
   </Container>
 </div>
@@ -111,6 +120,10 @@
 
 <!-- end content -->
 <style>
+  .score {
+    margin-bottom: 0px;
+    margin-top: 5px;
+  }
   .title {
     margin-top: 50px;
     margin-bottom: 15px;
@@ -120,6 +133,11 @@
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+  }
+
+  .per-click {
+    color: antiquewhite;
+    text-shadow: 2px 2px #000;
   }
 
   .space {
@@ -166,10 +184,12 @@
   }
 
   .upgrades{
+    width: 100%;
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
+    justify-content: space-evenly; 
     align-items: left;
+    margin-bottom: 20px;
   }
 
 </style>
