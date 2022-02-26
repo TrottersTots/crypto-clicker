@@ -182,7 +182,7 @@
         $info_map[0]["C02 Emissions"] = `${emissions} tons`;
     }
   };
-
+  // github is broken
   $: {
     updateSpaceScene($score);
   }
