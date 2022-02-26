@@ -48,13 +48,20 @@
   let dust = 0;
   let stars = 0;
 
-  const setDust = () => {
-    dust = Math.floor(Math.random() * 3);
-    setTimeout(setDust, 20000);
+  const cycleDust = () => {
+    if (dust == 2) {
+      dust = 0;
+      return;
+    }
+    dust++;
   };
-  const setStars = () => {
-    stars = Math.floor(Math.random() * 8);
-    setTimeout(setStars, 10000);
+
+  const cycleStars = () => {
+    if (stars == 7) {
+      stars = 0;
+      return;
+    }
+    stars++;
   };
 
   const updateEcoInfo = () => {
@@ -183,8 +190,6 @@
   const addClicker = () => {
     clickers = [...clickers, 0];
   };
-  setDust();
-  setStars();
 
   const addRobot01 = () => {
     robot01s = [...robot01s, 0];
@@ -208,6 +213,11 @@
 <div class="content">
   <Container title="[eco footprint]" grow={1}>
     <InfoJuicer padding={true} />
+    <span
+      ><button on:click={cycleDust}>🌌</button><button on:click={cycleStars}
+        >🌠</button
+      ></span
+    >
     <InfoJuicer>
       <div class="space">
         <div
@@ -223,7 +233,9 @@
           style={`background-image: url("/assets/planets/${planet}.gif")`}
         />
       </div>
-      <span>{"highscore: " + $highscore.toFixed(5) + "₿"}</span>
+      <span class="highscore_box"
+        >{"highscore: " + $highscore.toFixed(5) + "₿"}</span
+      >
     </InfoJuicer>
   </Container>
   <Container title="main" grow={2} show_title={false}>
@@ -292,15 +304,22 @@
     <Clicker name={"GPU"} />
   {/each}
 </div>
-
 <div class="footer">
   <h4>Nathan Inbar && Justin Stitt</h4>
 </div>
 
 <!-- end content -->
 <style>
+  span > button {
+    border: none;
+    background: transparent;
+    font-size: 1.8rem;
+  }
   span {
-    color: aliceblue;
+    background-color: aliceblue;
+  }
+  .highscore_box {
+    background-color: #000;
   }
   .score {
     margin-bottom: 0px;
@@ -341,14 +360,17 @@
 
   .space__planet {
     background-repeat: no-repeat;
-    margin-left: 150px;
-    margin-top: 150px;
+    transform: translate(50%, 50%);
     transform: scale(1.5);
+    width: 100px;
+    height: 100px;
+    margin-left: 100px;
+    margin-top: 100px;
   }
 
   .footer {
     color: antiquewhite;
-    margin-top: -20px;
+    margin-top: -40px;
     margin-left: var(--global_margin);
     text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000,
       1px 1px 0 #000;
