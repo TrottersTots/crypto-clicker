@@ -4,22 +4,22 @@ export let score = writable(74.9);
 
 /* UPGRADES */
 
-
-
-export let cost_multiplier = writable(1.8);
+export let cost_multiplier = writable(1.02);
 
 export let multipliers = writable(
-    {'Clicker': 1.50,
-    'Robot01': 2.50,
-    'Robot02': 3.50,
-    'Cookie': 1.50,
+    {'Clicker': 1.05,
+    'Robot01': 1.10,
+    'Robot02': 1.12,
+    'Cookie': 1.15,
+    'GPU': 1.08,
 },);
 
 export let costs = writable(
     {'Clicker': 0.0002,
-    'Robot01': 0.0050,
-    'Robot02': 0.0150,
+    'Robot01': 0.0350,
+    'Robot02': 0.1150,
     'Cookie': 0.0005,
+    'GPU': 0.0155,
 },);
 
 export let upgrade_costs = writable(
@@ -27,6 +27,7 @@ export let upgrade_costs = writable(
     'Robot01': 0.0150,
     'Robot02': 0.0450,
     'Cookie': 0.0015,
+    'GPU': 0.0075,
 },);
 
 export let increments = writable(
@@ -34,4 +35,5 @@ export let increments = writable(
     'Robot01': 0.00010,
     'Robot02': 0.00100,
     'Cookie': 0.00001,
+    'GPU': 0.00006,
 },);

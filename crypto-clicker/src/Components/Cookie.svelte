@@ -32,16 +32,19 @@
 
 
   button {
+    transform: scale(1.5);
     background: none;
     border: none;
+    margin-top: 100px;
+    margin-bottom: 105px;
   }
 
   button:hover {
-    transform: scale(1.08);
+    transform: scale(1.58);
   }
 
   button:active {
-    transform: scale(1.2);
+    transform: scale(1.8);
 
     background: none;
     border: none;

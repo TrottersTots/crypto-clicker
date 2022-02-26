@@ -6,6 +6,7 @@
 
     import { slide } from "svelte/transition"
     export let name = 'Name';
+    export let display_name;
     export let description = 'Lorem ipsum dolor sit amet...';
     export let img = '/assets/robot_1.gif'
     export let len = 0;
@@ -37,10 +38,12 @@
         <div class="len">
             <h3>{len}</h3>
         </div>
-        <img class='gif' alt={name} src={img} draggable='false'/>
+        <img class='gif' alt={name} src={img} draggable='false'
+            class:scaleUp={name=='Robot02'} class:scaleUp2={name=='GPU'}
+        />
         <div class='text'>
             <p class='name'>
-                {name}
+                {display_name}
             </p>
             <p class='description'>
                 {description}
@@ -113,11 +116,12 @@
     }
 
     .gif {
+        min-width:96px;
+        min-height:96px;
         max-width: 100px;
         max-height: 100px;
         transform: scale(.65);
     }
-
 
     .container:hover {
         box-shadow: 5px 5px 10px 5px rgb(35, 36, 35);
@@ -172,5 +176,16 @@
         -moz-user-select: none; /* Old versions of Firefox */
         -ms-user-select: none; /* Internet Explorer/Edge */
         user-select: none; /* Non-prefixed version, currently*/
+    }
+
+    .scaleUp {
+        transform: scaleX(1.5) scaleY(1);
+
+        image-rendering: pixelated;
+    }
+    .scaleUp2 {
+        transform: scaleX(1) scaleY(.6) translateY(10px);
+
+        image-rendering: pixelated;
     }
 </style>
