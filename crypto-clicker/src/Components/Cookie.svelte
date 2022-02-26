@@ -1,5 +1,11 @@
 <script>
-  import { score, increments, costs, multipliers } from "./stores.js";
+  import {
+    score,
+    increments,
+    costs,
+    multipliers,
+    highscore,
+  } from "./stores.js";
 
   export const name = "Cookie";
 
@@ -25,7 +31,8 @@
 <button
   on:click={() => {
     $score += increment;
-    play()
+    $highscore += increment;
+    play();
   }}
 >
   <img class="ominous-hover" alt="btc" src={img_path} draggable="false" />

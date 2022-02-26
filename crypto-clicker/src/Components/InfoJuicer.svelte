@@ -24,6 +24,7 @@
     border-radius: 2px;
     margin-bottom: 20px;
   }
+
   .padded {
     padding: 15px;
     background-color: rgb(18, 16, 16) !important;

@@ -1,6 +1,12 @@
 <script>
   import { onMount } from "svelte";
-  import { score, increments, costs, multipliers } from "./stores.js";
+  import {
+    score,
+    increments,
+    costs,
+    multipliers,
+    highscore,
+  } from "./stores.js";
   export let speed = 1;
   export const name = "Clicker";
 
@@ -9,6 +15,9 @@
 
   const action = () => {
     $score += increment;
+    if (increment > 0) {
+      $highscore += increment;
+    }
     setTimeout(action, 1000 / speed);
   };
 
