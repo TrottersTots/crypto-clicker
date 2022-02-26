@@ -7,17 +7,22 @@
 
   import Upgrade from "./Components/Upgrade.svelte";
 
-  import { score, costs, increments, info_map, cost_multiplier } from "./Components/stores.js";
+  import {
+    score,
+    costs,
+    increments,
+    info_map,
+    cost_multiplier,
+  } from "./Components/stores.js";
 
   import InfoJuicer from "./Components/InfoJuicer.svelte";
 
   let cookie;
   let clicker;
-	let clickers = Array(0);
-	let robot01s = Array(0);
-	let robot02s = Array(0);
+  let clickers = Array(0);
+  let robot01s = Array(0);
+  let robot02s = Array(0);
   let gpus = Array(0);
-
 
   const add = (event) => {
     var n = event.detail.name;
@@ -32,11 +37,10 @@
       addRobot01();
     } else if (n == "Robot02") {
       addRobot02();
+    } else if (n == "GPU") {
+      addGPU();
     }
-    else if (n == 'GPU') {
-      addGPU()
-    }
-  }
+  };
 
   // [`Cookie Increment: ${$cookie_increment}`, ]
   let planet = 0;
@@ -175,7 +179,7 @@
   }
 
   const addClicker = () => {
-    clickers = [...clickers, 0]
+    clickers = [...clickers, 0];
   };
   setDust();
   setStars();
@@ -219,66 +223,70 @@
       </div>
     </InfoJuicer>
   </Container>
-    <Container title="main" grow={2} show_title={false} >
-      <h2 class='score ominous-hover-no-rotate per-click' style='font-size: 40px'>{$score.toFixed(5)} ₿</h2>
-      <Cookie bind:this={cookie} />
-      <h3 class='per-click ominous-hover-no-rotate'>{$increments['Cookie'].toFixed(6)} ₿/click</h3>
-    </Container>
+  <Container title="main" grow={2} show_title={false}>
+    <h2 class="score ominous-hover-no-rotate per-click" style="font-size: 40px">
+      {$score.toFixed(5)} ₿
+    </h2>
+    <Cookie bind:this={cookie} />
+    <h3 class="per-click ominous-hover-no-rotate">
+      {$increments["Cookie"].toFixed(6)} ₿/click
+    </h3>
+  </Container>
   <Container title="[miners]" grow={1}>
-    <div class='scroll'>
-      <ClickerJuicer 
-      len={clickers.length}
-      on:buy={add}
-      name='Clicker' 
-      description='An extra mouse to click for you'
-      img='/assets/btc_w_cursor.png'
-      display_name={'Clicker'}
+    <div class="scroll">
+      <ClickerJuicer
+        len={clickers.length}
+        on:buy={add}
+        name="Clicker"
+        description="An extra mouse to click for you"
+        img="/assets/btc_w_cursor.png"
+        display_name={"Clicker"}
       />
-      <ClickerJuicer 
-      len={gpus.length}
-      on:buy={add}
-      name='GPU' 
-      description='A NoVidia graphics card to mine Bitcoin'
-      img='/assets/gpu.gif'
-      display_name={'GPU'}
+      <ClickerJuicer
+        len={gpus.length}
+        on:buy={add}
+        name="GPU"
+        description="A NoVidia graphics card to mine Bitcoin"
+        img="/assets/gpu.gif"
+        display_name={"GPU"}
       />
-      <ClickerJuicer 
-      len={robot01s.length}
-      on:buy={add} 
-      name='Robot01' 
-      description='This Bitcoin mining robot will harvest Bitcoin for you'
-    img='/assets/robot_1.gif'
-    display_name={'Crypto Bot'}
-    />
-    <ClickerJuicer 
-    len={robot02s.length}
-    on:buy={add} 
-    name='Robot02' 
-    description='This Bitcoin mining robot02 will harvest Bitcoin for you'
-    img='/assets/robot_2.gif'
-    display_name={'Crypto Drone'}
-    />
+      <ClickerJuicer
+        len={robot01s.length}
+        on:buy={add}
+        name="Robot01"
+        description="This Bitcoin mining robot will harvest Bitcoin for you"
+        img="/assets/robot_1.gif"
+        display_name={"Crypto Bot"}
+      />
+      <ClickerJuicer
+        len={robot02s.length}
+        on:buy={add}
+        name="Robot02"
+        description="This Bitcoin mining robot02 will harvest Bitcoin for you"
+        img="/assets/robot_2.gif"
+        display_name={"Crypto Drone"}
+      />
     </div>
-    
+
     <h1>[upgrades]</h1>
-    <div class='upgrades'>
-      <Upgrade name={'Cookie'} img='/assets/cursor_plus.png'/>
-      <Upgrade name={'Clicker'} img='/assets/btc_w_cursor_plus.png'/>
-      <Upgrade name={'Robot01'} img='/assets/robot1_plus.png'/>
-      <Upgrade name={'Robot02'} img='/assets/robot2_plus.png'/>
+    <div class="upgrades">
+      <Upgrade name={"Cookie"} img="/assets/cursor_plus.png" />
+      <Upgrade name={"Clicker"} img="/assets/btc_w_cursor_plus.png" />
+      <Upgrade name={"Robot01"} img="/assets/robot1_plus.png" />
+      <Upgrade name={"Robot02"} img="/assets/robot2_plus.png" />
     </div>
   </Container>
   {#each clickers as c}
-    <Clicker name = {'Clicker'}/>
+    <Clicker name={"Clicker"} />
   {/each}
   {#each robot01s as c}
-    <Clicker name = {'Robot01'} />
+    <Clicker name={"Robot01"} />
   {/each}
   {#each robot02s as c}
-    <Clicker name = {'Robot02'}/>
+    <Clicker name={"Robot02"} />
   {/each}
   {#each gpus as c}
-    <Clicker name = {'GPU'}/>
+    <Clicker name={"GPU"} />
   {/each}
 </div>
 
@@ -328,7 +336,8 @@
   }
   .space__planet {
     background-repeat: no-repeat;
-    translate: 50% 50%;
+    margin-left: 150px;
+    margin-top: 150px;
     transform: scale(1.5);
   }
 
@@ -340,11 +349,11 @@
       1px 1px 0 #000;
   }
 
-  .upgrades{
+  .upgrades {
     width: 100%;
     display: flex;
     flex-direction: row;
-    justify-content: space-evenly; 
+    justify-content: space-evenly;
     align-items: left;
     margin-bottom: 20px;
   }
@@ -375,13 +384,13 @@
     align-items: left;
     margin-bottom: 20px;
   }
-  
+
   .scroll {
     max-width: 330px;
     min-height: 350px;
     overflow-y: scroll;
     overflow-x: hidden;
-    height:30%;
+    height: 30%;
     border: 1px solid rgba(240, 248, 255, 0.3);
     border-radius: 5px;
   }
