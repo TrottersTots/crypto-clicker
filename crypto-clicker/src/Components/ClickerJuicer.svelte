@@ -103,7 +103,7 @@
 
     .len {
         font-size: 10px;
-        position: absolute;
+        position: relative;
         color: rgb(183, 189, 177);
         margin-left: 8px;
         margin-top: 0;
