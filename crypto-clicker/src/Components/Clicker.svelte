@@ -37,7 +37,6 @@
 
 <!--html-->
 <div style='background-color: red'>
-C
 </div>
 <!--end-html-->
 

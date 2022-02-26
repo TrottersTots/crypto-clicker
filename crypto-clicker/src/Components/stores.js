@@ -17,5 +17,5 @@ export let clicker_multiplier = writable(1.50); // makes 50% better
 export let clicker_upgrade_cost = writable(0.00050); // costs (0.00050 BTC to upgrade)
 let clicker_upgrade_cost_growth_rate = 1.5;
 export const update_clicker_upgrade_cost = () => {
-    cookie_upgrade_cost.update(n=>n*cookie_upgrade_cost_growth_rate);
+    clicker_upgrade_cost.update(n=>n*clicker_upgrade_cost_growth_rate);
 }
