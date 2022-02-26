@@ -1,10 +1,27 @@
 <script>
-	export let name;
+	import Cookie from "./Components/Cookie.svelte";
+	import Clicker from "./Components/Clicker.svelte";
+
+	import { score } from "./Components/stores.js";
+
+	let clickers = Array(0);
+
+	const addClicker = () => {
+		clickers += [0];
+	}
+
 </script>
 
 <main>
-	<h1>Hello {name}!</h1>
-	<p>Visit the <a href="https://svelte.dev/tutorial">Svelte tutorial</a> to learn how to build Svelte apps.</p>
+	<h1>Crypto Clicker</h1>
+	<h2>{$score.toFixed(5)} : BTC</h2>
+	<Cookie/>
+	<button on:click={addClicker}>
+		Add Clicker
+	</button>
+	{#each clickers as clicker}
+		<Clicker/>
+	{/each}
 </main>
 
 <style>
