@@ -14,8 +14,9 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    background-color: moccasin;
-    border: 1px solid brown;
+    background-color: rgba(54, 212, 191, 0.8);
     margin: var(--global_margin);
+  }
+  div > h1 {
   }
 </style>
