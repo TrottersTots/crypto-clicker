@@ -2,10 +2,11 @@
 <p style="text-align: center"><a href="www.cryptoclicker.org">www.cryptoclicker.org</a></p>
 <img src="readme_assets/title.svg" width="400" height="100" />
 
-<img src="crypto-clicker/public/assets/planets/0.gif"/>
-<img src="crypto-clicker/public/assets/planets/1.gif"/>
-<img src="crypto-clicker/public/assets/planets/2.gif"/>
-<img src="crypto-clicker/public/assets/planets/3.gif"/>
+
+[]("crypto-clicker/public/assets/planets/0.gif")
+[]("crypto-clicker/public/assets/planets/1.gif")
+[]("crypto-clicker/public/assets/planets/2.gif")
+[]("crypto-clicker/public/assets/planets/3.gif")
 
 ## YouTube Showcase
 <a href="https://www.youtube.com/watch?v=6eza_Ij9gHg"><img src="readme_assets/CryptoClicker_slide.jpg"/></a>
