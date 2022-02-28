@@ -2,18 +2,27 @@
 <p style="text-align: center"><a href="www.cryptoclicker.org">www.cryptoclicker.org</a></p>
 <img src="readme_assets/title.svg" width="400" height="100" />
 
-
-[]("crypto-clicker/public/assets/planets/0.gif")
-[]("crypto-clicker/public/assets/planets/1.gif")
-[]("crypto-clicker/public/assets/planets/2.gif")
-[]("crypto-clicker/public/assets/planets/3.gif")
+<div>
+<img src="crypto-clicker/public/assets/planets/0.gif">
+<img src="crypto-clicker/public/assets/planets/1.gif">
+<img src="crypto-clicker/public/assets/planets/2.gif">
+<img src="crypto-clicker/public/assets/planets/3.gif">
+<img src="crypto-clicker/public/assets/planets/4.gif">
+<img src="crypto-clicker/public/assets/planets/5.gif">
+<img src="crypto-clicker/public/assets/planets/6.gif">
+<img src="crypto-clicker/public/assets/planets/7.gif">
+</div>
 
 ## YouTube Showcase
 [▶ Click to Watch!](https://www.youtube.com/watch?v=6eza_Ij9gHg)
 <a href="https://www.youtube.com/watch?v=6eza_Ij9gHg"><img src="readme_assets/CryptoClicker_slide.jpg"/></a>
 
+<div>
 <img src="crypto-clicker/public/assets/robot_1.gif">
-
+<img src="crypto-clicker/public/assets/robot_2.gif" style="width: 75px; image-rendering: pixelated;">
+<img src="crypto-clicker/public/assets/gpu.gif" style="width: 100px">
+</div>
+  
 ## Inspiration
 We were inspired by the cyberpunk genre and the popular mobile game "Cookie Clicker".
 
