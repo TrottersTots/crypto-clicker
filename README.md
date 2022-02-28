@@ -9,6 +9,7 @@
 []("crypto-clicker/public/assets/planets/3.gif")
 
 ## YouTube Showcase
+[▶ Click to Watch!](https://www.youtube.com/watch?v=6eza_Ij9gHg)
 <a href="https://www.youtube.com/watch?v=6eza_Ij9gHg"><img src="readme_assets/CryptoClicker_slide.jpg"/></a>
 
 <img src="crypto-clicker/public/assets/robot_1.gif">
