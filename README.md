@@ -1,5 +1,5 @@
 # Crypto Clicker
-<p style="text-align: center"><a href="www.cryptoclicker.org">www.cryptoclicker.org</a></p>
+<p style="text-align: center"><a href="https://www.cryptoclicker.org">www.cryptoclicker.org</a></p>
 <p align=center>
 <img src="readme_assets/title.svg" width="400" height="100" />
 </p>
